@@ -1,7 +1,7 @@
-import zod from 'zod';
+import { z } from 'zod';
 
-const addReportSchema = zod.object({
-    message: zod.string().min(5),
+const addReportSchema = z.object({
+    message: z.string().min(5),
 });
 
 export default addReportSchema;

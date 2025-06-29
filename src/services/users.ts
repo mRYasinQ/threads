@@ -10,26 +10,26 @@ import type { IUser } from '@/shared/types';
 
 const USERS_FILE = 'users';
 
-export const getUsers = async (): Promise<IUser[]> => {
+export const getAllUsers = async (): Promise<IUser[]> => {
     const users = await readData<IUser[]>(USERS_FILE);
     return users;
 };
 
 export const checkUserExistByEmail = async (email: string): Promise<boolean> => {
-    const users = await getUsers();
+    const users = await getAllUsers();
     const isUserExist = Boolean(users.find((user) => user.email === email));
     return isUserExist;
 };
 
 export const getUserByEmail = async (email: string): Promise<IUser> => {
-    const users = await getUsers();
+    const users = await getAllUsers();
     const user = users.find((user) => user.email === email);
     if (!user) throw new AppError(Messages.LOGIN_DATA_INVALID, HttpStatusCode.UNAUTHORIZED);
     return user;
 };
 
 export const getUserById = async (id: string): Promise<IUser> => {
-    const users = await getUsers();
+    const users = await getAllUsers();
     const user = users.find((user) => user.id === id);
     if (!user) throw new AppError(Messages.USER_NOT_FOUND, HttpStatusCode.NOT_FOUND);
     return user;
@@ -39,7 +39,7 @@ export const addUser = async (data: Omit<IUser, 'id' | 'joinedAt'>): Promise<boo
     const isUserExist = await checkUserExistByEmail(data.email);
     if (isUserExist) throw new AppError(Messages.REGISTERED_EMAIL, HttpStatusCode.CONFLICT);
 
-    const users = await getUsers();
+    const users = await getAllUsers();
     const newUser: IUser = {
         id: crypto.randomUUID(),
         ...data,

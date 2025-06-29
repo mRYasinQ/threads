@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
 
-import type { ICustomResponse, ICustomResponseArgs } from './types';
+import type { ICustomResponse, ICustomResponseOptions } from './types';
 
 export const CustomResponse = <T>({
     statusCode = 200,
     body,
-}: ICustomResponseArgs<T>): NextResponse<ICustomResponse<T>> => {
+}: ICustomResponseOptions<T>): NextResponse<ICustomResponse<T>> => {
     const ok: boolean = statusCode >= 200 && statusCode <= 299;
 
     return NextResponse.json(

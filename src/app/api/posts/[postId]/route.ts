@@ -1,24 +1,24 @@
-import { addReport } from '@/services/reports';
+import { getPost } from '@/services/posts';
 
-import { CustomResponse, validateData } from '@/lib/utils';
+import { CustomResponse } from '@/lib/utils';
 import AppError from '@/lib/exception/AppError';
-
-import { addReportSchema } from '@/lib/schemas/reports';
 
 import HttpStatusCode from '@/lib/constants/HttpStatusCode';
 import Messages from '@/lib/constants/Messages';
 
 import type { NextRequest, NextResponse } from 'next/server';
-import type { IAddReportBody } from '@/shared/types';
+import type { IPost } from '@/shared/types';
 
-export async function POST(req: NextRequest): Promise<NextResponse> {
+export async function GET(
+    req: NextRequest,
+    { params }: { params: Promise<{ postId: string }> },
+): Promise<NextResponse> {
     try {
-        const body: IAddReportBody = await req.json();
+        const { postId } = await params;
 
-        validateData<IAddReportBody>(addReportSchema, body);
-        await addReport(body);
+        const post = await getPost(postId);
 
-        return CustomResponse({ statusCode: HttpStatusCode.CREATED, body: { message: Messages.ADD_REPORT_SUCCESS } });
+        return CustomResponse<IPost>({ body: { data: post } });
     } catch (error) {
         if (error instanceof AppError) {
             if (error.isOperational) {

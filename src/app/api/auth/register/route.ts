@@ -22,10 +22,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     } catch (error) {
         if (error instanceof AppError) {
             if (error.isOperational) {
-                return CustomResponse({
-                    statusCode: error.statusCode,
-                    body: { message: error.message },
-                });
+                return CustomResponse({ statusCode: error.statusCode, body: { message: error.message } });
             }
         }
 

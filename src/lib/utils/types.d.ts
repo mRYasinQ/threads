@@ -1,8 +1,10 @@
 import type { StatusCode } from '@/shared/types';
+import type { IPagination } from './pagination';
 
 export interface IResponseBody<T> {
-    message: string;
-    data?: T | null;
+    data?: T;
+    pagination?: IPagination;
+    message?: string;
 }
 
 export interface ICustomResponse<T> {
@@ -11,6 +13,6 @@ export interface ICustomResponse<T> {
     body: IResponseBody<T>;
 }
 
-export interface ICustomResponseArgs<T> extends Omit<ICustomResponse<T>, 'ok'> {
+export interface ICustomResponseOptions<T> extends Omit<ICustomResponse<T>, 'ok'> {
     statusCode?: StatusCode;
 }
