@@ -16,7 +16,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         const body: IRegisterBody = await req.json();
 
         validateData<IRegisterBody>(registerSchema, body);
-        await addUser(body);
+        await addUser({ fullName: body.fullName, email: body.email, password: body.confirmPassword });
 
         return CustomResponse({ statusCode: HttpStatusCode.CREATED, body: { message: Messages.REGISTER_SUCCESS } });
     } catch (error) {
