@@ -1,0 +1,5 @@
+@layer base {
+    body {
+        @apply font-poppins bg-gray-100 font-normal transition-all select-none dark:bg-black;
+    }
+}
