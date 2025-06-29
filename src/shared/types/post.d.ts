@@ -1,4 +1,4 @@
-import { IPaginationOptions } from '@/lib/utils/pagination';
+import { IPaginationOptions } from '@/lib/utils/server/pagination';
 
 export interface IPost {
     id: string;

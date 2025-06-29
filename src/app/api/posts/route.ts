@@ -2,7 +2,7 @@ import { addPost, getPosts } from '@/services/posts';
 
 import { checkAuth } from '@/lib/guard/auth';
 
-import { CustomResponse, validateData } from '@/lib/utils';
+import { CustomResponse, validateData } from '@/lib/utils/server';
 import AppError from '@/lib/exception/AppError';
 
 import { addPostSchema, postsQuerySchema } from '@/lib/schemas/posts';

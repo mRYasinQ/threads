@@ -1,6 +1,6 @@
 import { addReport } from '@/services/reports';
 
-import { CustomResponse, validateData } from '@/lib/utils';
+import { CustomResponse, validateData } from '@/lib/utils/server';
 import AppError from '@/lib/exception/AppError';
 
 import { addReportSchema } from '@/lib/schemas/reports';

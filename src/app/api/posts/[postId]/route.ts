@@ -1,6 +1,6 @@
 import { getPost } from '@/services/posts';
 
-import { CustomResponse } from '@/lib/utils';
+import { CustomResponse } from '@/lib/utils/server';
 import AppError from '@/lib/exception/AppError';
 
 import HttpStatusCode from '@/lib/constants/HttpStatusCode';

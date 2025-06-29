@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 
-import { readData, writeData } from '@/lib/utils';
+import { readData, writeData } from '@/lib/utils/server';
 import AppError from '@/lib/exception/AppError';
 
 import HttpStatusCode from '@/lib/constants/HttpStatusCode';

@@ -1,9 +1,9 @@
 import { ZodError } from 'zod';
 
-import AppError from '../exception/AppError';
+import AppError from '../../exception/AppError';
 
-import HttpStatusCode from '../constants/HttpStatusCode';
-import Messages from '../constants/Messages';
+import HttpStatusCode from '../../constants/HttpStatusCode';
+import Messages from '../../constants/Messages';
 
 import type { ZodSchema } from 'zod';
 

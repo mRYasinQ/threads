@@ -30,7 +30,7 @@
                 "queryParams": [],
                 "pathParams": [],
                 "auth": {
-                    "type": "inherited"
+                    "type": "none"
                 },
                 "body": {
                     "type": "text",
@@ -59,7 +59,7 @@
                 "queryParams": [],
                 "pathParams": [],
                 "auth": {
-                    "type": "inherited"
+                    "type": "none"
                 },
                 "body": {
                     "type": "text",
@@ -104,7 +104,36 @@
                 ],
                 "pathParams": [],
                 "auth": {
-                    "type": "inherited"
+                    "type": "none"
+                },
+                "body": {
+                    "type": "none",
+                    "file": {
+                        "name": ""
+                    },
+                    "text": {
+                        "value": "",
+                        "format": "application/json"
+                    },
+                    "form": {
+                        "isMultipart": false,
+                        "fields": []
+                    },
+                    "graphql": {
+                        "query": "",
+                        "variables": ""
+                    }
+                }
+            },
+            {
+                "name": "Get Post",
+                "url": "{{BaseUrl}}/posts/postId",
+                "method": "GET",
+                "headers": [],
+                "queryParams": [],
+                "pathParams": [],
+                "auth": {
+                    "type": "none"
                 },
                 "body": {
                     "type": "none",
@@ -162,7 +191,7 @@
                 "queryParams": [],
                 "pathParams": [],
                 "auth": {
-                    "type": "inherited"
+                    "type": "none"
                 },
                 "body": {
                     "type": "text",

@@ -1,14 +1,14 @@
 import crypto from 'crypto';
 
-import { readData, writeData } from '@/lib/utils';
-import { pagination } from '@/lib/utils/pagination';
+import { readData, writeData } from '@/lib/utils/server';
+import { pagination } from '@/lib/utils/server/pagination';
 import AppError from '@/lib/exception/AppError';
 
 import HttpStatusCode from '@/lib/constants/HttpStatusCode';
 import Messages from '@/lib/constants/Messages';
 
 import type { IPost, IPostsOptions } from '@/shared/types';
-import type { IDataPagination } from '@/lib/utils/pagination';
+import type { IDataPagination } from '@/lib/utils/server/pagination';
 
 const POSTS_FILE = 'posts';
 

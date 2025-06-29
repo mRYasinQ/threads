@@ -1,6 +1,6 @@
 import { getUserByEmail } from '@/services/users';
 
-import { CustomResponse, validateData } from '@/lib/utils';
+import { CustomResponse, validateData } from '@/lib/utils/server';
 import AppError from '@/lib/exception/AppError';
 
 import loginSchema from '@/lib/schemas/loginSchema';

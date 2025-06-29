@@ -1,6 +1,6 @@
 import { addUser } from '@/services/users';
 
-import { CustomResponse, validateData } from '@/lib/utils';
+import { CustomResponse, validateData } from '@/lib/utils/server';
 import AppError from '@/lib/exception/AppError';
 
 import registerSchema from '@/lib/schemas/registerSchema';
