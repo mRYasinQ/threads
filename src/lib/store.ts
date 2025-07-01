@@ -1,8 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import reportSlice from './features/report/reportSlice';
+import menuSlice from './features/menu/menuSlice';
+
 export const makeStore = () => {
     return configureStore({
-        reducer: {},
+        reducer: {
+            report: reportSlice.reducer,
+            menu: menuSlice.reducer,
+        },
     });
 };
 

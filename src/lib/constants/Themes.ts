@@ -2,10 +2,10 @@ import { SunIcon } from '@/icons/SunIcon';
 import { MoonIcon } from '@/icons/MoonIcon';
 
 const Themes = {
-    system: {
+    auto: {
         icon: null,
-        value: 'system',
-        label: 'System',
+        value: 'auto',
+        label: 'Auto',
     },
     light: {
         icon: SunIcon,

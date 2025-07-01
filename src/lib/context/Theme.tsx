@@ -6,20 +6,20 @@ import Themes from '../constants/Themes';
 
 import type { IThemeContext, Theme } from './types';
 
-export const ThemeContext = createContext<IThemeContext | undefined>(undefined);
+export const ThemeContext = createContext<IThemeContext>({ theme: null, setTheme: null });
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-    const [theme, setTheme] = useState<Theme>(undefined);
+    const [theme, setTheme] = useState<Theme>(null);
 
     useEffect(() => {
-        const savedTheme = (localStorage.getItem('theme') ?? undefined) as Theme;
+        const savedTheme = (localStorage.getItem('theme') ?? null) as Theme;
 
         if (!theme) {
             if (savedTheme) {
                 setTheme(savedTheme);
             } else {
-                localStorage.setItem('theme', Themes.system.value);
-                setTheme(Themes.system.value as Theme);
+                localStorage.setItem('theme', Themes.auto.value);
+                setTheme(Themes.auto.value as Theme);
             }
             return;
         }
@@ -27,7 +27,7 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         localStorage.setItem('theme', theme);
 
         if (
-            (theme === Themes.system.value && window.matchMedia('(prefers-color-scheme: dark)').matches) ||
+            (theme === Themes.auto.value && window.matchMedia('(prefers-color-scheme: dark)').matches) ||
             theme === Themes.dark.value
         ) {
             document.documentElement.classList.add('dark');
