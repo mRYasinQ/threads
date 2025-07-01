@@ -1,5 +1,5 @@
-import { SunIcon } from '@/icons/SunIcon';
-import { MoonIcon } from '@/icons/MoonIcon';
+import { SunIcon } from '@/components/icons/SunIcon';
+import { MoonIcon } from '@/components/icons/MoonIcon';
 
 const Themes = {
     auto: {

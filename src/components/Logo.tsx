@@ -1,4 +1,4 @@
-import { ThreadsIcon } from '@/icons/ThreadsIcon';
+import { ThreadsIcon } from '@/components/icons/ThreadsIcon';
 
 export const Logo = () => {
     return (

@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils/client';
 
 import Themes from '@/lib/constants/Themes';
 
-import { ArrowLeftIcon } from '@/icons/ArrowLeftIcon';
+import { ArrowLeftIcon } from '@/components/icons/ArrowLeftIcon';
 
 export const SidebarTheme = () => {
     const { theme, setTheme } = useContext(ThemeContext);

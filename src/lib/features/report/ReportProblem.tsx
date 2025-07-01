@@ -8,7 +8,7 @@ import { closeReportModal } from './reportSlice';
 
 import { ReportProblemForm } from './ReportProblemForm';
 
-import { RemoveIcon } from '@/icons/RemoveIcon';
+import { RemoveIcon } from '@/components/icons/RemoveIcon';
 
 export const ReportProblem = () => {
     const dispatch = useAppDispatch();

@@ -11,8 +11,8 @@ import { SidebarTheme } from './SidebarTheme';
 
 import { cn } from '@/lib/utils/client';
 
-import { MenuLineIcon } from '@/icons/MenuLineIcon';
-import { DirectionRightIcon } from '@/icons/DirectionRightIcon';
+import { MenuLineIcon } from '@/components/icons/MenuLineIcon';
+import { DirectionRightIcon } from '@/components/icons/DirectionRightIcon';
 
 export const SidebarMenu = () => {
     const dispatch = useAppDispatch();
