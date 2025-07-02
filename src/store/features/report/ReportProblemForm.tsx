@@ -3,8 +3,14 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import { useAddReportMutation } from '@/store/services/threadsApi';
+import { useNotif } from '@/lib/hooks/useNotif';
+
 import { addReportSchema } from '@/lib/schemas/reports';
 
+import Messages from '@/lib/constants/Messages';
+
+import type { IAddReportBody, ICustomResponse } from '@/shared/types';
 import type { IReportProblemFormProps } from './types';
 
 export const ReportProblemForm = ({ closeModal }: IReportProblemFormProps) => {
@@ -14,8 +20,24 @@ export const ReportProblemForm = ({ closeModal }: IReportProblemFormProps) => {
         formState: { isValid },
     } = useForm({ resolver: zodResolver(addReportSchema) });
 
-    const submitReport = () => {
-        console.log('Success.');
+    const [addReport] = useAddReportMutation();
+    const { showNotif } = useNotif();
+
+    const submitReport = async (data: IAddReportBody) => {
+        try {
+            const response = await addReport(data).unwrap();
+
+            showNotif(response.body.message ?? Messages.ADD_REPORT_SUCCESS, 'bottom');
+        } catch (error) {
+            if (error && typeof error === 'object' && 'data' in error) {
+                const errorMessage = (error.data as ICustomResponse<void>).body.message ?? Messages.INTERNAL_SERVER;
+                showNotif(errorMessage, 'bottom');
+            } else {
+                showNotif(Messages.INTERNAL_SERVER, 'bottom');
+            }
+        } finally {
+            closeModal();
+        }
     };
 
     return (

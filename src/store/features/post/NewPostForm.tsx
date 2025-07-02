@@ -1,22 +1,46 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { CustomForm } from '../ui/CustomForm';
-import { SubmitButton } from '../ui/SubmitButton';
+import { useAddPostMutation } from '@/store/services/threadsApi';
+import { useNotif } from '@/lib/hooks/useNotif';
+
+import { CustomForm } from '../../../components/ui/CustomForm';
+import { SubmitButton } from '../../../components/ui/SubmitButton';
 
 import { addPostSchema } from '@/lib/schemas/posts';
 
+import Messages from '@/lib/constants/Messages';
+
+import type { IAddPostBody, ICustomResponse } from '@/shared/types';
+
 export const NewPostForm = () => {
+    const router = useRouter();
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm({ resolver: zodResolver(addPostSchema) });
 
-    const newPostHandler = () => {
-        console.log('Success.');
+    const [addPost] = useAddPostMutation();
+    const { showNotif } = useNotif();
+
+    const newPostHandler = async (data: IAddPostBody) => {
+        try {
+            const response = await addPost(data);
+
+            showNotif(response.data?.body.message ?? Messages.POST_CREATED, 'bottom');
+            router.push('/');
+        } catch (error) {
+            if (error && typeof error === 'object' && 'data' in error) {
+                const errorMessage = (error.data as ICustomResponse<void>).body.message ?? Messages.INTERNAL_SERVER;
+                showNotif(errorMessage, 'top');
+            } else {
+                showNotif(Messages.INTERNAL_SERVER, 'top');
+            }
+        }
     };
 
     return (

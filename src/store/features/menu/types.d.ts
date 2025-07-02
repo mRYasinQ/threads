@@ -1,4 +1,4 @@
 export interface IMenuState {
-    activeMenu: boolean;
+    activeSidebarMenu: boolean;
     activeThemeMenu: boolean;
 }

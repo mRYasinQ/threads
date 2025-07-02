@@ -1,4 +1,4 @@
-import { LoginForm } from '@/components/Forms/LoginForm';
+import { LoginForm } from '@/store/features/auth/LoginForm';
 
 import type { Metadata } from 'next';
 

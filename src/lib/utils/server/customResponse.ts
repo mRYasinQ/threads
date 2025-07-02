@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import type { ICustomResponse, ICustomResponseOptions } from './types';
+import type { ICustomResponse, ICustomResponseOptions } from '@/shared/types';
 
 export const CustomResponse = <T>({
     statusCode = 200,

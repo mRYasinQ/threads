@@ -1,28 +1,49 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { CustomForm } from '../ui/CustomForm';
-import { Input } from '../ui/Input';
-import { SubmitButton } from '../ui/SubmitButton';
+import { useRegisterMutation } from '@/store/services/threadsApi';
+import { useNotif } from '@/lib/hooks/useNotif';
+
+import { CustomForm } from '../../../components/ui/CustomForm';
+import { Input } from '../../../components/ui/Input';
+import { SubmitButton } from '../../../components/ui/SubmitButton';
 
 import registerSchema from '@/lib/schemas/registerSchema';
 
 import RegisterFields from '@/lib/constants/Fields/RegisterFields';
+import Messages from '@/lib/constants/Messages';
 
-import type { IRegisterBody } from '@/shared/types';
+import type { ICustomResponse, IRegisterBody } from '@/shared/types';
 
 export const RegisterForm = () => {
+    const router = useRouter();
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm<IRegisterBody>({ resolver: zodResolver(registerSchema) });
 
-    const registerHandler = () => {
-        console.log('Success.');
+    const [registerUSer] = useRegisterMutation();
+    const { showNotif } = useNotif();
+
+    const registerHandler = async (data: IRegisterBody) => {
+        try {
+            const response = await registerUSer(data).unwrap();
+
+            showNotif(response.body.message ?? Messages.REGISTER_SUCCESS, 'top');
+            router.push('/login');
+        } catch (error) {
+            if (error && typeof error === 'object' && 'data' in error) {
+                const errorMessage = (error.data as ICustomResponse<void>).body.message ?? Messages.INTERNAL_SERVER;
+                showNotif(errorMessage, 'top');
+            } else {
+                showNotif(Messages.INTERNAL_SERVER, 'top');
+            }
+        }
     };
 
     return (

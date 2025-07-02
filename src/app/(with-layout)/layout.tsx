@@ -1,10 +1,12 @@
-import { MenuController } from '@/lib/features/menu/MenuController';
+import { MenuController } from '@/store/features/menu/MenuController';
+import { ActionButton } from '@/store/features/auth/ActionButton';
 import { Sidebar } from '@/components/Sidebar';
-import { ReportProblem } from '@/lib/features/report/ReportProblem';
+import { ReportProblem } from '@/store/features/report/ReportProblem';
 
 export default function WithLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
         <MenuController>
+            <ActionButton />
             <Sidebar />
             {children}
             <ReportProblem />

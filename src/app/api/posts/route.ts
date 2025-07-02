@@ -25,7 +25,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
         validateData<IPostsOptions>(postsQuerySchema, queries);
         const { data, pagination } = await getPosts(queries);
 
-        return CustomResponse<IPost[]>({ statusCode: HttpStatusCode.OK, body: { data, pagination } });
+        return CustomResponse<IPost[]>({ body: { data, pagination } });
     } catch (error) {
         if (error instanceof AppError) {
             if (error.isOperational) {

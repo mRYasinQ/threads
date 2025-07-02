@@ -1,4 +1,4 @@
-import type { IDataPagination, IPaginationOptions } from './types';
+import { IDataPagination, IPaginationOptions } from '@/shared/types';
 
 export const pagination = <T>({ data, limit = 10, page = 1 }: IPaginationOptions<T>): IDataPagination<T[]> => {
     const totalData: number = data.length;

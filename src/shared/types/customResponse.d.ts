@@ -1,5 +1,4 @@
-import type { StatusCode } from '@/shared/types';
-import type { IPagination } from './pagination';
+import type { StatusCode, IPagination } from '@/shared/types';
 
 export interface IResponseBody<T> {
     data?: T;

@@ -1,4 +1,4 @@
-import { NewPostForm } from '@/components/Forms/NewPostForm';
+import { NewPostForm } from '@/store/features/post/NewPostForm';
 
 import type { Metadata } from 'next';
 

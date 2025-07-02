@@ -6,7 +6,7 @@ import { useAppDispatch } from '@/lib/hooks/redux';
 
 import { ThemeContext } from '@/lib/context/Theme';
 
-import { showMenu } from '@/lib/features/menu/menuSlice';
+import { showMenu } from '@/store/features/menu/menuSlice';
 
 import { cn } from '@/lib/utils/client';
 

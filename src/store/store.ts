@@ -1,14 +1,21 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import api from './services/api';
+import notificationSlice from './features/notification/notificationSlice';
 import reportSlice from './features/report/reportSlice';
 import menuSlice from './features/menu/menuSlice';
+import authSlice from './features/auth/authSlice';
 
 export const makeStore = () => {
     return configureStore({
         reducer: {
-            report: reportSlice.reducer,
+            [api.reducerPath]: api.reducer,
+            auth: authSlice.reducer,
+            notification: notificationSlice.reducer,
             menu: menuSlice.reducer,
+            report: reportSlice.reducer,
         },
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
     });
 };
 
