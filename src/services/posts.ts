@@ -7,8 +7,7 @@ import AppError from '@/lib/exception/AppError';
 import HttpStatusCode from '@/lib/constants/HttpStatusCode';
 import Messages from '@/lib/constants/Messages';
 
-import type { IPost, IPostsOptions } from '@/shared/types';
-import type { IDataPagination } from '@/lib/utils/server/pagination';
+import type { IPost, IPostsOptions, IDataPagination } from '@/shared/types';
 
 const POSTS_FILE = 'posts';
 
@@ -45,8 +44,7 @@ export const addPost = async (data: Omit<IPost, 'id' | 'createdAt'>): Promise<bo
         ...data,
         createdAt: new Date().toISOString(),
     };
-    posts.push(newPost);
-    writeData<IPost[]>(POSTS_FILE, posts);
+    writeData<IPost[]>(POSTS_FILE, [newPost, ...posts]);
 
     return true;
 };

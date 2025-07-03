@@ -1,6 +1,14 @@
 import api from './api';
 
-import type { IAddPostBody, IAddReportBody, ICustomResponse, ILoginBody, IRegisterBody, IUser } from '@/shared/types';
+import type {
+    IAddPostBody,
+    IAddReportBody,
+    ICustomResponse,
+    ILoginBody,
+    IPost,
+    IRegisterBody,
+    IUser,
+} from '@/shared/types';
 
 const threadApi = api.injectEndpoints({
     endpoints: (builder) => ({
@@ -33,8 +41,33 @@ const threadApi = api.injectEndpoints({
             }),
             invalidatesTags: (result) => [{ type: 'Post', id: 'LIST' }],
         }),
+        getPosts: builder.infiniteQuery<ICustomResponse<IPost[]>, undefined, number>({
+            infiniteQueryOptions: {
+                initialPageParam: 1,
+
+                getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
+                    return lastPage.body.pagination?.hasNextPage ? lastPageParam + 1 : undefined;
+                },
+            },
+            query: ({ pageParam }) => ({
+                url: '/posts',
+                method: 'get',
+                params: {
+                    page: pageParam,
+                },
+            }),
+        }),
+        getPost: builder.query<ICustomResponse<IPost>, string>({
+            query: (postId: string) => `/posts/${postId}`,
+        }),
     }),
 });
 
 export default threadApi;
-export const { useAddReportMutation, useRegisterMutation, useLoginMutation, useAddPostMutation } = threadApi;
+export const {
+    useAddReportMutation,
+    useRegisterMutation,
+    useLoginMutation,
+    useAddPostMutation,
+    useGetPostsInfiniteQuery,
+} = threadApi;

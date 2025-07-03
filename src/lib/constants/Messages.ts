@@ -9,6 +9,7 @@ enum Messages {
     POST_NOT_FOUND = 'Post not found.',
     POST_CREATED = 'Post created successfully.',
     INVALID_TOKEN = 'Invalid token.',
+    COPY_SUCCESS = 'Copied to clipboard.',
 }
 
 export default Messages;

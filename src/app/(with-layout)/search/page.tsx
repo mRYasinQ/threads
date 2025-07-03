@@ -1,3 +1,6 @@
+import { Footer } from '@/components/Footer';
+import { Header } from '@/components/Header';
+
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -7,8 +10,12 @@ export const metadata: Metadata = {
 
 export default function SearchPage() {
     return (
-        <main>
-            <h1>Search Page</h1>
-        </main>
+        <>
+            <Header title="Search" />
+            <div className="h-full overflow-y-auto border-gray-200 bg-white pt-16 lg:border-r lg:border-b lg:border-l lg:pt-0 dark:border-gray-800 dark:bg-gray-900">
+                Search
+            </div>
+            <Footer />
+        </>
     );
 }

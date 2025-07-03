@@ -24,7 +24,7 @@ export const SidebarMenu = () => {
     };
 
     return (
-        <div className="relative hidden md:block">
+        <div className="relative hidden lg:block">
             <button
                 id="menu"
                 className={cn(
