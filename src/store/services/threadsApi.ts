@@ -57,6 +57,16 @@ const threadApi = api.injectEndpoints({
                 },
             }),
         }),
+        getPostList: builder.query<ICustomResponse<IPost[]>, string>({
+            query: (search: string) => ({
+                url: '/posts',
+                method: 'get',
+                params: {
+                    search,
+                    limit: 10,
+                },
+            }),
+        }),
         getPost: builder.query<ICustomResponse<IPost>, string>({
             query: (postId: string) => `/posts/${postId}`,
         }),
@@ -70,4 +80,8 @@ export const {
     useLoginMutation,
     useAddPostMutation,
     useGetPostsInfiniteQuery,
+    useGetPostListQuery,
+    useLazyGetPostListQuery,
+    useGetPostQuery,
+    useLazyGetPostQuery,
 } = threadApi;
