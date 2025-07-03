@@ -3,4 +3,4 @@ export interface IReport {
     message: string;
 }
 
-export interface IAddReportBody extends Omit<IReport, 'id'> {}
+export type IAddReportBody = Omit<IReport, 'id'>;

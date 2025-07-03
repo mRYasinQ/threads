@@ -22,7 +22,7 @@ export const Posts = () => {
         window.addEventListener('scroll', scrollHandler);
 
         return () => window.removeEventListener('scroll', scrollHandler);
-    }, [isFetchingNextPage, hasNextPage]);
+    }, [isFetchingNextPage, hasNextPage, fetchNextPage]);
 
     return (
         <div className="flex flex-col divide-y divide-gray-200 dark:divide-gray-800">

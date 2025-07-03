@@ -3,5 +3,5 @@ export interface IReportState {
 }
 
 export interface IReportProblemFormProps {
-    closeModal: Function;
+    closeModal: () => void;
 }

@@ -2,7 +2,7 @@
 
 import { useAppDispatch } from '@/lib/hooks/redux';
 
-import { showReportModal } from '@/store/features/report/reportSlice';
+import { showReportModal } from './reportSlice';
 
 export const ShowReportButton = () => {
     const dispatch = useAppDispatch();

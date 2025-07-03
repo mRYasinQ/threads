@@ -2,13 +2,13 @@ import type { MouseEventHandler } from 'react';
 
 export interface INotificationState {
     visible: boolean;
-    message: string | null;
-    location?: Location | null;
+    message: string;
+    location?: Location;
 }
 
 export interface INotificationPayload {
     message: string;
-    location?: Location | null;
+    location?: Location;
 }
 
 export interface INotificationProps {

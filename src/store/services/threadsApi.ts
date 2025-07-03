@@ -39,13 +39,13 @@ const threadApi = api.injectEndpoints({
                 method: 'post',
                 body: newPost,
             }),
-            invalidatesTags: (result) => [{ type: 'Post', id: 'LIST' }],
+            invalidatesTags: () => [{ type: 'Post', id: 'LIST' }],
         }),
         getPosts: builder.infiniteQuery<ICustomResponse<IPost[]>, undefined, number>({
             infiniteQueryOptions: {
                 initialPageParam: 1,
 
-                getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
+                getNextPageParam: (lastPage, allPages, lastPageParam) => {
                     return lastPage.body.pagination?.hasNextPage ? lastPageParam + 1 : undefined;
                 },
             },

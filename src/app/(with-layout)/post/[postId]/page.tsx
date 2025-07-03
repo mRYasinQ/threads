@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 
-import { makeStore } from '@/store/store';
+import { makeStore } from '@/store';
 import threadApi from '@/store/services/threadsApi';
 
 import { Header } from '@/components/Header';

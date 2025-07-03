@@ -5,8 +5,8 @@ import type { INotificationState, INotificationPayload } from './types';
 
 const initialState: INotificationState = {
     visible: false,
-    message: null,
-    location: null,
+    message: '',
+    location: undefined,
 };
 
 const notificationSlice = createSlice({

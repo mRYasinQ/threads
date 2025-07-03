@@ -1,4 +1,4 @@
-import { ShowReportButton } from './ShowReportButton';
+import { ShowReportButton } from '@/store/features/report/ShowReportButton';
 
 export const Footer = () => {
     return (

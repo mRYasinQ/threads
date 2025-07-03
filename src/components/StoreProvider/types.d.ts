@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { RootState } from '@/store/store';
+import type { RootState } from '@/store';
 
 export interface IStoreProviderProps {
     children: ReactNode;

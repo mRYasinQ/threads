@@ -6,7 +6,7 @@ export interface IUser {
     joinedAt: string;
 }
 
-export interface ILoginBody extends Pick<IUser, 'email' | 'password'> {}
+export type ILoginBody = Pick<IUser, 'email' | 'password'>;
 export interface IRegisterBody extends Omit<IUser, 'id' | 'joinedAt'> {
     confirmPassword: string;
 }

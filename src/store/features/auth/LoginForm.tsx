@@ -42,7 +42,7 @@ export const LoginForm = () => {
             const userId = response.body.data?.id;
             if (!userId) throw new Error();
 
-            Cookies.set('userId', userId)
+            Cookies.set('userId', userId);
             dispatch(setIsAuthenticated({ authenticatedStatus: true }));
 
             showNotif(response.body.message ?? Messages.LOGIN_SUCCESS, 'bottom');
@@ -73,7 +73,7 @@ export const LoginForm = () => {
             ))}
             <SubmitButton>Login</SubmitButton>
             <p className="text-center text-sm text-gray-800 dark:text-gray-200">
-                Don't have account?{' '}
+                Don&apos;t have account?{' '}
                 <Link href="/register" className="font-semibold">
                     Register
                 </Link>

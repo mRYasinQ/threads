@@ -1,4 +1,4 @@
-import { IPaginationOptions } from '@/lib/utils/server/pagination';
+import { IPaginationOptions } from './pagination';
 
 export interface IPost {
     id: string;
@@ -7,7 +7,7 @@ export interface IPost {
     createdAt: string;
 }
 
-export interface IAddPostBody extends Pick<IPost, 'content'> {}
+export type IAddPostBody = Pick<IPost, 'content'>;
 
 export interface IPostsOptions extends Omit<IPaginationOptions, 'data'> {
     search?: string;

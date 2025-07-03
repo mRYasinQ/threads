@@ -21,7 +21,7 @@ export const MenuController = ({ children }: { children: React.ReactNode }) => {
         document.addEventListener('click', resetMenuHandler);
 
         return () => document.removeEventListener('click', resetMenuHandler);
-    }, []);
+    }, [dispatch]);
 
     return children;
 };

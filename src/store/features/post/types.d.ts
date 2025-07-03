@@ -1,4 +1,4 @@
-import type { ICustomResponse, IPost } from '@/shared/types';
+import type { IPost } from '@/shared/types';
 
 export interface IPostsProps {
     initialData: IPost[];

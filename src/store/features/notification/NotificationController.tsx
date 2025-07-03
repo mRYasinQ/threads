@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { useNotif } from '@/lib/hooks/useNotif';
 
@@ -9,14 +9,14 @@ import { Notification } from './Notification';
 export const NotificationController = ({ children }: { children: React.ReactNode }) => {
     const { isShowNotif, notifMessage, notifLocation, hideNotif } = useNotif();
 
-    const closeNotifHandler = () => hideNotif();
+    const closeNotifHandler = useCallback(() => hideNotif(), [hideNotif]);
 
     useEffect(() => {
         if (!isShowNotif) return;
 
         const timerId = setTimeout(() => closeNotifHandler(), 5000);
         return () => clearTimeout(timerId);
-    }, [isShowNotif]);
+    }, [isShowNotif, closeNotifHandler]);
 
     return (
         <>
