@@ -1,4 +1,4 @@
-import { addPost, getPosts } from '@/services/posts';
+import { addPost, getPosts } from '@/lib/services/posts';
 
 import { checkAuth } from '@/lib/guard/auth';
 
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         const body: IAddPostBody = await req.json();
 
         validateData<IAddPostBody>(addPostSchema, body);
-        await addPost({ ...body, author: user.fullName });
+        await addPost({ ...body, author: user.id });
 
         return CustomResponse({ statusCode: HttpStatusCode.CREATED, body: { message: Messages.POST_CREATED } });
     } catch (error) {

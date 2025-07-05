@@ -14,7 +14,7 @@ import { addPostSchema } from '@/lib/schemas/posts';
 
 import Messages from '@/lib/constants/Messages';
 
-import type { IAddPostBody, ICustomResponse } from '@/shared/types';
+import type { ICustomResponse, IAddPostInput } from '@/shared/types';
 
 export const NewPostForm = () => {
     const router = useRouter();
@@ -27,7 +27,7 @@ export const NewPostForm = () => {
     const [addPost] = useAddPostMutation();
     const { showNotif } = useNotif();
 
-    const newPostHandler = async (data: IAddPostBody) => {
+    const newPostHandler = async (data: IAddPostInput) => {
         try {
             const response = await addPost(data);
 

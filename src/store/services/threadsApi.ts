@@ -1,7 +1,7 @@
 import api from './api';
 
 import type {
-    IAddPostBody,
+    IAddPostInput,
     IAddReportBody,
     ICustomResponse,
     ILoginBody,
@@ -33,7 +33,7 @@ const threadApi = api.injectEndpoints({
                 body: newUser,
             }),
         }),
-        addPost: builder.mutation<ICustomResponse<void>, IAddPostBody>({
+        addPost: builder.mutation<ICustomResponse<void>, IAddPostInput>({
             query: (newPost) => ({
                 url: '/posts',
                 method: 'post',

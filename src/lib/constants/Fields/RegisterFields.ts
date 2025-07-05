@@ -5,7 +5,7 @@ const RegisterFields: IFields<IRegisterBody>[] = [
     {
         title: 'Full Name',
         id: 'fullName',
-        registerType: 'fullName',
+        registerType: 'full_name',
         type: 'text',
         placeholder: 'Enter your full name...',
     },
@@ -26,7 +26,7 @@ const RegisterFields: IFields<IRegisterBody>[] = [
     {
         title: 'Confirm Password',
         id: 'confirmPassword',
-        registerType: 'confirmPassword',
+        registerType: 'confirm_password',
         type: 'password',
         placeholder: 'Enter your confirm password...',
     },

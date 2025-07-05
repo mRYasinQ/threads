@@ -1,4 +1,4 @@
-import { getUserById } from '@/services/users';
+import { getUserById } from '@/lib/services/users';
 
 import type { NextRequest } from 'next/server';
 import type { IUser } from '@/shared/types';

@@ -1,4 +1,4 @@
-import { addReport } from '@/services/reports';
+import { addReport } from '@/lib/services/reports';
 
 import { CustomResponse, validateData } from '@/lib/utils/server';
 import AppError from '@/lib/exception/AppError';

@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import moment from 'moment';
 
 import { useAppDispatch, useAppSelector } from '@/lib/hooks/redux';
 import { useNotif } from '@/lib/hooks/useNotif';
@@ -12,6 +11,8 @@ import { togglePostMenu } from '../menu/menuSlice';
 import { Menu } from '@/components/Menu';
 import { MenuItem } from '@/components/MenuItem';
 
+import { toRelativeTime } from '@/lib/utils/client';
+
 import Messages from '@/lib/constants/Messages';
 
 import { MoreIcon } from '@/components/icons/MoreIcon';
@@ -19,7 +20,7 @@ import { LinkIcon } from '@/components/icons/LinkIcon';
 
 import type { IPostProps } from './types';
 
-export const PostItem = ({ post: { id, author, content, createdAt } }: IPostProps) => {
+export const PostItem = ({ post: { id, author, content, created_at } }: IPostProps) => {
     const dispatch = useAppDispatch();
     const { activePostMenu } = useAppSelector((state) => state.menu);
     const { showNotif } = useNotif();
@@ -46,12 +47,12 @@ export const PostItem = ({ post: { id, author, content, createdAt } }: IPostProp
             </div>
             <div className="flex w-full flex-col gap-2">
                 <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                        <h5 className="w-fit text-lg font-medium text-gray-800 dark:text-gray-200">{author}</h5>
-                        <span className="text-sm text-gray-700 dark:text-gray-300">•</span>
-                        <span className="text-sm text-gray-700 dark:text-gray-300">
-                            {moment(new Date(createdAt)).startOf('hour').fromNow()}
-                        </span>
+                    <div className="flex items-center gap-1">
+                        <h5 className="w-fit text-lg font-medium text-gray-800 dark:text-gray-200">
+                            {author.full_name}
+                        </h5>
+                        <span className="text-sm text-gray-600 dark:text-gray-400">•</span>
+                        <span className="text-sm text-gray-600 dark:text-gray-400">{toRelativeTime(created_at)}</span>
                     </div>
                     <div id="menu" className="relative">
                         <button

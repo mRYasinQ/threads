@@ -1,4 +1,4 @@
-import { getUserByEmail } from '@/services/users';
+import { getUserByEmail } from '@/lib/services/users';
 
 import { CustomResponse, validateData } from '@/lib/utils/server';
 import AppError from '@/lib/exception/AppError';

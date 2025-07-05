@@ -1,4 +1,4 @@
-import { addUser } from '@/services/users';
+import { addUser } from '@/lib/services/users';
 
 import { CustomResponse, validateData } from '@/lib/utils/server';
 import AppError from '@/lib/exception/AppError';
@@ -16,7 +16,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         const body: IRegisterBody = await req.json();
 
         validateData<IRegisterBody>(registerSchema, body);
-        await addUser({ fullName: body.fullName, email: body.email, password: body.confirmPassword });
+        await addUser({ full_name: body.full_name, email: body.email, password: body.confirm_password });
 
         return CustomResponse({ statusCode: HttpStatusCode.CREATED, body: { message: Messages.REGISTER_SUCCESS } });
     } catch (error) {

@@ -38,7 +38,7 @@
                         "name": ""
                     },
                     "text": {
-                        "value": "{\n  \"fullName\": \"\",\n  \"email\": \"\",\n  \"password\": \"\",\n  \"confirmPassword\": \"\"\n}",
+                        "value": "{\n  \"full_name\": \"\",\n  \"email\": \"\",\n  \"password\": \"\",\n  \"confirm_password\": \"\"\n}",
                         "format": "application/json"
                     },
                     "form": {

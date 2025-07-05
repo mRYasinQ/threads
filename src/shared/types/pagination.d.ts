@@ -15,4 +15,5 @@ export interface IPaginationOptions<T> {
     data: T[];
     limit?: number;
     page?: number;
+    totalData: number;
 }

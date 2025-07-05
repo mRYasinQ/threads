@@ -1,4 +1,4 @@
-import { getPost } from '@/services/posts';
+import { getPost } from '@/lib/services/posts';
 
 import { CustomResponse } from '@/lib/utils/server';
 import AppError from '@/lib/exception/AppError';
