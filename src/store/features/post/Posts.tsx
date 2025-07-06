@@ -11,12 +11,11 @@ export const Posts = () => {
 
     useEffect(() => {
         const scrollHandler = () => {
-            const scrollPosition = window.innerHeight + window.scrollY;
-            const pageHeight = document.body.offsetHeight - 800;
+            const scrolledTo = window.scrollY + window.innerHeight;
+            const threshold = 800;
+            const isReachToThreshold = scrolledTo >= document.body.scrollHeight - threshold;
 
-            if (scrollPosition >= pageHeight && !isFetchingNextPage && hasNextPage) {
-                fetchNextPage();
-            }
+            if (isReachToThreshold && !isFetchingNextPage && hasNextPage) fetchNextPage();
         };
 
         window.addEventListener('scroll', scrollHandler);
