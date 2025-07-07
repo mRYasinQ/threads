@@ -12,3 +12,7 @@ export interface IPostsInitialData {
 export interface IPostProps {
     post: IPost;
 }
+
+export interface IPostMenuProps {
+    postId: string;
+}
