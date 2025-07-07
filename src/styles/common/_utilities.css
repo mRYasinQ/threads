@@ -1,5 +1,0 @@
-@layer utilities {
-    .container {
-        @apply mx-auto max-w-full px-4 sm:max-w-[1440px] sm:px-6 lg:px-8 xl:px-32;
-    }
-}
