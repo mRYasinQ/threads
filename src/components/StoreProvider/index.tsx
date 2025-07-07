@@ -9,8 +9,8 @@ import type { IStoreProviderProps } from './types';
 import type { AppStore } from '@/store';
 
 export const StoreProvider = ({ children, preloadedState }: IStoreProviderProps) => {
-    const storerRef = useRef<AppStore>(undefined);
-    storerRef.current ??= makeStore(preloadedState);
+    const storeRef = useRef<AppStore>(undefined);
+    storeRef.current ??= makeStore(preloadedState);
 
-    return <Provider store={storerRef.current}>{children}</Provider>;
+    return <Provider store={storeRef.current}>{children}</Provider>;
 };
