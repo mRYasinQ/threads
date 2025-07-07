@@ -1,13 +1,11 @@
-# Threads
+# 🧵 Threads
 
 Sample threads.
 
----
+## 🧩 Guide
 
-## Guide
-
-Create a new project and database in Supabase,  
-then run the following SQL to create the tables:
+> Create a new project and database in Supabase,  
+> then run the following SQL to create the tables:
 
 ```sql
 -- WARNING: This schema is for context only and is not meant to be run.
