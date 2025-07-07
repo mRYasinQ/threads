@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { useAddReportMutation } from '@/store/services/threadsApi';
+import { useAddReportMutation } from '@/store/services/report';
 import { useNotif } from '@/lib/hooks/useNotif';
 
 import { addReportSchema } from '@/lib/schemas/reports';

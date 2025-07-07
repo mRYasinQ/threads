@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 
-import { useLazyGetPostsQuery } from '@/store/services/threadsApi';
+import { useLazyGetPostsQuery } from '@/store/services/post';
 
 import { RowResult } from './RowResult';
 

@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Cookies from 'js-cookie';
 
 import { useAppDispatch } from '@/lib/hooks/redux';
-import { useLoginMutation } from '@/store/services/threadsApi';
+import { useLoginMutation } from '@/store/services/auth';
 import { useNotif } from '@/lib/hooks/useNotif';
 
 import { setIsAuthenticated } from './authSlice';

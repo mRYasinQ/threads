@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 
 import { makeStore } from '@/store';
-import threadApi from '@/store/services/threadsApi';
+import postApi from '@/store/services/post';
 
 import { MainLayout } from '@/components/MainLayout';
 import { PostItem } from '@/store/features/post/PostItem';
@@ -17,7 +17,7 @@ export default async function PostPage({ params }: { params: Promise<{ postId: s
     const { postId } = await params;
 
     const store = makeStore();
-    const post = await store.dispatch(threadApi.endpoints.getPost.initiate(postId)).unwrap();
+    const post = await store.dispatch(postApi.endpoints.getPost.initiate(postId)).unwrap();
 
     if (!post?.ok || !post?.body.data) notFound();
 

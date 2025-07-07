@@ -1,7 +1,7 @@
 import { unstable_noStore } from 'next/cache';
 
 import { makeStore } from '@/store';
-import threadApi from '@/store/services/threadsApi';
+import postApi from '@/store/services/post';
 
 import { MainLayout } from '@/components/MainLayout';
 import { Posts } from '@/store/features/post/Posts';
@@ -18,7 +18,7 @@ export default async function RootPage() {
     unstable_noStore();
 
     const store = makeStore();
-    const data = await store.dispatch(threadApi.endpoints.getPosts.initiate({ page: 1 })).unwrap();
+    const data = await store.dispatch(postApi.endpoints.getPosts.initiate({ page: 1 })).unwrap();
 
     const initialPost: IPost[] = data?.body?.data ?? [];
     const initialHasNextPage: boolean = data?.body?.pagination?.hasNextPage ?? false;

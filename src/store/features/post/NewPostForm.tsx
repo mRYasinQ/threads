@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { useAddPostMutation } from '@/store/services/threadsApi';
+import { useAddPostMutation } from '@/store/services/post';
 import { useNotif } from '@/lib/hooks/useNotif';
 
 import { CustomForm } from '../../../components/ui/CustomForm';
