@@ -1,5 +1,6 @@
 import api from './api';
 
+import type { IGetPostsQueryArg } from './types';
 import type {
     IAddPostInput,
     IAddReportBody,
@@ -39,36 +40,23 @@ const threadApi = api.injectEndpoints({
                 method: 'post',
                 body: newPost,
             }),
-            invalidatesTags: () => [{ type: 'Post', id: 'LIST' }],
+            invalidatesTags: ['Post'],
         }),
-        getPosts: builder.infiniteQuery<ICustomResponse<IPost[]>, undefined, number>({
-            infiniteQueryOptions: {
-                initialPageParam: 1,
-
-                getNextPageParam: (lastPage, allPages, lastPageParam) => {
-                    return lastPage.body.pagination?.hasNextPage ? lastPageParam + 1 : undefined;
-                },
-            },
-            query: ({ pageParam }) => ({
-                url: '/posts',
-                method: 'get',
-                params: {
-                    page: pageParam,
-                },
-            }),
-        }),
-        getPostList: builder.query<ICustomResponse<IPost[]>, string>({
-            query: (search: string) => ({
+        getPosts: builder.query<ICustomResponse<IPost[]>, IGetPostsQueryArg>({
+            query: ({ page, search, limit }) => ({
                 url: '/posts',
                 method: 'get',
                 params: {
                     search,
-                    limit: 10,
+                    page,
+                    limit,
                 },
             }),
+            providesTags: ['Post'],
         }),
         getPost: builder.query<ICustomResponse<IPost>, string>({
             query: (postId: string) => `/posts/${postId}`,
+            providesTags: ['Post'],
         }),
     }),
 });
@@ -79,9 +67,8 @@ export const {
     useRegisterMutation,
     useLoginMutation,
     useAddPostMutation,
-    useGetPostsInfiniteQuery,
-    useGetPostListQuery,
-    useLazyGetPostListQuery,
+    useGetPostsQuery,
+    useLazyGetPostsQuery,
     useGetPostQuery,
     useLazyGetPostQuery,
 } = threadApi;

@@ -17,12 +17,12 @@ export default async function PostPage({ params }: { params: Promise<{ postId: s
     const { postId } = await params;
 
     const store = makeStore();
-    const { data: post } = await store.dispatch(threadApi.endpoints.getPost.initiate(postId));
+    const post = await store.dispatch(threadApi.endpoints.getPost.initiate(postId)).unwrap();
 
     if (!post?.ok || !post?.body.data) notFound();
 
     return (
-        <MainLayout title='Post'>
+        <MainLayout title="Post">
             <PostItem post={post?.body.data} />
         </MainLayout>
     );

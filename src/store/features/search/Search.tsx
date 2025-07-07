@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 
-import { useLazyGetPostListQuery } from '@/store/services/threadsApi';
+import { useLazyGetPostsQuery } from '@/store/services/threadsApi';
 
 import { RowResult } from './RowResult';
 
@@ -15,13 +15,13 @@ export const Search = () => {
     const lastRequestRef = useRef<LastSearchRequest>(undefined);
     const [query, setQuery] = useState('');
 
-    const [searchPost, { data: posts, isSuccess, isFetching }] = useLazyGetPostListQuery();
+    const [getPosts, { data: posts, isSuccess, isFetching }] = useLazyGetPostsQuery();
 
     useEffect(() => {
         if (query.length < 3) return;
 
         const timerId = setTimeout(() => {
-            const { abort } = searchPost(query);
+            const { abort } = getPosts({ search: query, limit: 10 });
             lastRequestRef.current = abort;
         }, 300);
 
@@ -29,7 +29,7 @@ export const Search = () => {
             if (lastRequestRef.current) lastRequestRef.current();
             clearTimeout(timerId);
         };
-    }, [query, searchPost]);
+    }, [getPosts, query]);
 
     return (
         <div className="flex flex-col">

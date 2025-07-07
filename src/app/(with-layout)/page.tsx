@@ -1,11 +1,13 @@
+import { unstable_noStore } from 'next/cache';
+
 import { makeStore } from '@/store';
 import threadApi from '@/store/services/threadsApi';
 
 import { MainLayout } from '@/components/MainLayout';
-import { StoreProvider } from '@/components/StoreProvider';
 import { Posts } from '@/store/features/post/Posts';
 
 import type { Metadata } from 'next';
+import type { IPost } from '@/shared/types';
 
 export const metadata: Metadata = {
     title: 'Threads',
@@ -13,15 +15,17 @@ export const metadata: Metadata = {
 };
 
 export default async function RootPage() {
+    unstable_noStore();
+
     const store = makeStore();
-    await store.dispatch(threadApi.endpoints.getPosts.initiate(undefined));
-    const state = store.getState();
+    const data = await store.dispatch(threadApi.endpoints.getPosts.initiate({ page: 1 })).unwrap();
+
+    const initialPost: IPost[] = data?.body?.data ?? [];
+    const initialHasNextPage: boolean = data?.body?.pagination?.hasNextPage ?? false;
 
     return (
         <MainLayout title="Home">
-            <StoreProvider preloadedState={state}>
-                <Posts />
-            </StoreProvider>
+            <Posts initialData={{ initialPost, initialHasNextPage }} />
         </MainLayout>
     );
 }

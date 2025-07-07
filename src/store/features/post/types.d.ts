@@ -1,7 +1,12 @@
 import type { IPost } from '@/shared/types';
 
 export interface IPostsProps {
-    initialData: IPost[];
+    initialData: IPostsInitialData;
+}
+
+export interface IPostsInitialData {
+    initialPost: IPost[];
+    initialHasNextPage: boolean;
 }
 
 export interface IPostProps {
