@@ -1,6 +1,6 @@
 import api from '../api';
 
-import type { IAddReportBody, ICustomResponse, IRegisterBody } from '@/shared/types';
+import type { IAddReportBody, ICustomResponse } from '@/shared/types';
 
 const reportApi = api.injectEndpoints({
     endpoints: (builder) => ({
@@ -9,13 +9,6 @@ const reportApi = api.injectEndpoints({
                 url: '/reports',
                 method: 'post',
                 body: newReport,
-            }),
-        }),
-        register: builder.mutation<ICustomResponse<void>, IRegisterBody>({
-            query: (newUser) => ({
-                url: '/auth/register',
-                method: 'post',
-                body: newUser,
             }),
         }),
     }),
