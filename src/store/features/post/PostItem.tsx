@@ -3,13 +3,16 @@ import Image from 'next/image';
 
 import { PostMenu } from './PostMenu';
 
-import { toRelativeTime } from '@/lib/utils/client';
+import { cn, toRelativeTime } from '@/lib/utils/client';
 
 import type { IPostProps } from './types';
+import type { IPost } from '@/shared/types';
 
-export const PostItem = ({ post: { id, author, content, created_at } }: IPostProps) => {
+export const showPost = (index: number, post: IPost) => <PostItem post={post} firstPost={index === 0} />;
+
+export const PostItem = ({ post: { id, author, content, created_at }, firstPost = false }: IPostProps) => {
     return (
-        <div className="flex gap-2 px-8 py-4">
+        <div className={cn('flex gap-2 px-8 py-4', !firstPost && 'border-t border-t-gray-200 dark:border-t-gray-800')}>
             <div>
                 <Image
                     src="/images/UserDefault.jpg"

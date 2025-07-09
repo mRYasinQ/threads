@@ -5,7 +5,6 @@ export interface IInfiniteOptions<T> {
     initialHasNextPage: boolean;
     getData: (page: number) => Promise<ICustomResponse<T[]>>;
     initialPage?: number;
-    threshold?: number;
 }
 
 export interface IInfiniteResult<T> {
@@ -13,4 +12,5 @@ export interface IInfiniteResult<T> {
     page: number;
     hasNextPage: boolean;
     isFetching: boolean;
+    loadData: () => void;
 }

@@ -1,10 +1,12 @@
 'use client';
 
+import { Virtuoso } from 'react-virtuoso';
+
 import { useLazyGetPostsQuery } from '@/store/services/post';
 
 import { useInfinite } from '@/lib/hooks/useInfinite';
 
-import { PostItem } from './PostItem';
+import { showPost } from './PostItem';
 
 import type { IPostsProps } from './types';
 import type { IPost } from '@/shared/types';
@@ -12,19 +14,21 @@ import type { IPost } from '@/shared/types';
 export const Posts = ({ initialData: { initialPost, initialHasNextPage } }: IPostsProps) => {
     const [getPosts] = useLazyGetPostsQuery();
 
-    const { data: posts } = useInfinite<IPost>({
+    const { data: posts, loadData } = useInfinite<IPost>({
         initialData: initialPost,
         initialHasNextPage,
         initialPage: 2,
         getData: (page) => getPosts({ page }).unwrap(),
-        threshold: 1000,
     });
 
     return (
-        <div className="flex flex-col divide-y divide-gray-200 dark:divide-gray-800">
-            {posts?.map((post) => (
-                <PostItem key={post.id} post={post} />
-            ))}
-        </div>
+        <Virtuoso
+            data={posts}
+            endReached={loadData}
+            useWindowScroll
+            itemContent={showPost}
+            computeItemKey={(index, post) => post.id}
+            initialTopMostItemIndex={0}
+        />
     );
 };

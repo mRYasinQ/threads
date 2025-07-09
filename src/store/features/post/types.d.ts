@@ -11,6 +11,7 @@ export interface IPostsInitialData {
 
 export interface IPostProps {
     post: IPost;
+    firstPost?: boolean;
 }
 
 export interface IPostMenuProps {
